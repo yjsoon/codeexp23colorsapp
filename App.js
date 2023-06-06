@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -15,6 +15,14 @@ import DetailsScreen from "./components/DetailsScreen";
 
 function HomeScreen({ navigation }) {
   const [colorArray, setColorArray] = useState([]);
+
+  useEffect(() => {
+    // Use `setOptions` to update the button that we previously specified
+    // Now the button includes an `onPress` handler to update the count
+    navigation.setOptions({
+      headerRight: () => <Button onPress={addColor} title="+" />
+    });
+  });
 
   function renderBlockRGB({ item }) {
     let { red, green, blue } = item;
@@ -51,7 +59,7 @@ function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Button onPress={addColor} title="Add colour" />
+      {/* <Button onPress={addColor} title="Add colour" /> */}
       <Button onPress={resetColors} title="Reset colours" />
 
       <FlatList
@@ -69,7 +77,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={({ navigation, route }) => ({
+            // Add a placeholder button without the `onPress` to avoid flicker
+            headerRight: () => <Button title="+" />
+          })}
+        />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
