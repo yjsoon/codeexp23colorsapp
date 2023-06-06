@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BlockRGB from "./components/BlockRGB";
@@ -18,8 +18,26 @@ function HomeScreen() {
     return <BlockRGB red={red} green={green} blue={blue} />;
   }
 
+  function addColor() {
+    // generate three random colours
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    // put them into an object
+    const colorObject = {
+      red,
+      green,
+      blue,
+      id: colorArray.length.toString()
+    };
+    // append it to the colorArray
+    const newArray = [colorObject, ...colorArray];
+    setColorArray(newArray);
+  }
+
   return (
     <View style={styles.container}>
+      <Button onPress={addColor} title="Add colour" />
       <FlatList
         style={styles.list}
         data={colorArray}
