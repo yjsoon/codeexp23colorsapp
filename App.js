@@ -14,7 +14,8 @@ function HomeScreen() {
   ]);
 
   function renderBlockRGB({ item }) {
-    return <BlockRGB red={item.red} green={item.green} blue={item.blue} />;
+    let { red, green, blue } = item;
+    return <BlockRGB red={red} green={green} blue={blue} />;
   }
 
   return (
