@@ -1,8 +1,17 @@
 import { View, Text, StyleSheet } from "react-native";
+import { useEffect } from "react";
 
 export default function DetailsScreen({ route }) {
   const { red, green, blue } = route.params;
   const darkMode = red + green + blue < 300 ? true : false;
+
+  // runs line 10 when showing up, and line 12 when leaving
+  useEffect(() => {
+    console.log("HIII ITS YO FRIEND DETAILSSSS");
+    return () => {
+      console.log("BYYEEEEEEE");
+    };
+  });
 
   return (
     <View

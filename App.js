@@ -24,6 +24,16 @@ function HomeScreen({ navigation }) {
     });
   });
 
+  // runs once at start
+  useEffect(() => {
+    console.log("Hello world");
+  }, []);
+
+  // run every time colorArray changes
+  useEffect(() => {
+    console.log(colorArray);
+  }, [colorArray]);
+
   function renderBlockRGB({ item }) {
     let { red, green, blue } = item;
     return (
