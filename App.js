@@ -2,12 +2,14 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import BlockRGB from "./components/BlockRGB";
 
 function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <BlockRGB red={255} green={127} blue={0} />
+      <BlockRGB red={0} green={127} blue={255} />
+      <BlockRGB red={255} green={0} blue={127} />
     </View>
   );
 }
@@ -28,7 +30,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ddd",
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: "center"
   }
 });
